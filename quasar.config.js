@@ -4,7 +4,12 @@
 import { defineConfig } from '#q-app/wrappers'
 
 export default defineConfig((ctx) => {
-  return {
+  return { 
+    framework: {
+      plugins: [
+        'Notify'
+      ],
+    }
     // https://v2.quasar.dev/quasar-cli-webpack/prefetch-feature
     // preFetch: true,
 
