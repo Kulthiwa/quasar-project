@@ -1,83 +1,52 @@
-# เปลี่ยนข้อความในฟอร์เป็นภาษาไทย
 <template>
-  <div class="q-pa-md" style="max-width: 400px">
+  <q-page class="q-pa-md">
 
-    <q-form
-      @submit="onSubmit"
-      @reset="onReset"
-      class="q-gutter-md"
-    >
+    <h5>กรอกข้อมูล</h5>
+
+    <q-form @submit="onSubmit">
+
       <q-input
-        filled
         v-model="name"
-        label="ชื่อ-สกุล *"
-        hint="ชื่อและนามสกุล"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'กรุณาพิมพ์ชื่อ']"
+        label="ชื่อ"
+        outlined
+        dense
+        required
       />
 
       <q-input
-        filled
+        v-model.number="age"
+        label="อายุ"
         type="number"
-        v-model="age"
-        label="อายุ *"
-        lazy-rules
-        :rules="[
-          val => val !== null && val !== '' || 'กรุณาใส่อายุ',
-          val => val > 0 && val < 100 || 'กรุณาใส่อายุจริง'
-        ]"
+        outlined
+        dense
+        required
+        class="q-mt-md"
       />
 
-      <q-toggle v-model="accept" label="ยอมรับ" />
-
-      <div>
-        <q-btn label="ยอมรับ" type="submit" color="primary"/>
-        <q-btn label="ยกเลิก" type="reset" color="primary" flat class="q-ml-sm" />
-      </div>
+      <q-btn
+        label="บันทึก"
+        type="submit"
+        color="primary"
+        class="q-mt-lg"
+      />
     </q-form>
 
-  </div>
+  </q-page>
 </template>
 
-<script>
-import { useQuasar } from 'quasar'
+<script setup>
 import { ref } from 'vue'
 
-export default {
-  setup () {
-    const $q = useQuasar()
+const name = ref('')
+const age = ref(null)
 
-    const name = ref(null)
-    const age = ref(null)
-    const accept = ref(false)
-    return {
-      name,
-      age,
-      accept,
-      onSubmit () {
-        if (accept.value !== true) {
-          $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'warning',
-            message: 'คุณจำเป็นต้องยอมรับ'
-          })
-        }
-        else {
-          $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'ข้อมูลได้รับการยืนยัน'
-          })
-        }
-      },
-      onReset () {
-        name.value = null
-        age.value = null
-        accept.value = false
-      }
-    }
-  }
+function onSubmit () {
+  console.log('ชื่อ:', name.value)
+  console.log('อายุ:', age.value)
+  alert(ชื่อ: ${name.value}, อายุ: ${age.value})
 }
 </script>
+
+<style scoped>
+/* ถ้าจะตกแต่งเพิ่มก็ใส่ที่นี่ */
+</style>
