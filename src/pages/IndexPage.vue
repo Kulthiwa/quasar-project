@@ -43,7 +43,8 @@ const age = ref(null)
 function onSubmit () {
   console.log('ชื่อ:', name.value)
   console.log('อายุ:', age.value)
-  alert(ชื่อ: ${name.value}, อายุ: ${age.value})
+  alert(`ชื่อ: ${name.value}, อายุ: ${age.value}`)
+
 }
 </script>
 
