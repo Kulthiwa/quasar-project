@@ -48,5 +48,4 @@ function onSubmit () {
 </script>
 
 <style scoped>
-/* ถ้าจะตกแต่งเพิ่มก็ใส่ที่นี่ */
 </style>
